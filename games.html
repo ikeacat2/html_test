@@ -16,16 +16,15 @@
             background-color: #00bbfa;
             color: white;
             display: flex;
-            justify-content: center; /* Centers the items horizontally */
+            justify-content: center;
             align-items: center;
             padding: 15px 20px;
         }
 
-        /* Make sure links are evenly spaced */
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px; /* Adds spacing between links */
+            gap: 20px;
             padding: 0;
             margin: 0;
         }
@@ -49,18 +48,51 @@
             font-size: 1.8em;
             cursor: pointer;
         }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            display: none;
+        }
+
+        .card.flipped img {
+            display: block;
+        }
     </style>
-    <body>
-        <nav class="navbar">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <!-- <li><a href="resources.html">Resources</a></li> -->
-                <li><a href="games.html">Mini Games</a></li>
-                <li><a href="subpage.html">FAQs</a></li>
-            </ul>
-            <div class="menu-toggle" onclick="toggleMenu();">☰</div>
-        </nav>
-        <h1>Mini Games</h1>
-        <p>Games coming here soon!</p>
-    </body>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Mini Games</a></li>
+            <li><a href="subpage.html">FAQs</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu();">☰</div>
+    </nav>
+
+    <h1>Mini Games</h1>
+    <div class="game-board" id="gameBoard"></div>
+
+    <script src="games.js"></script>
+</body>
 </html>
