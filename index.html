@@ -12,13 +12,46 @@
             background-color: #79d7fd;
             text-align: center;
         }
+        .navbar {
+            background-color: #0509ff;
+            color: white;
+            display: flex;
+            justify-content: center; /* Centers the items horizontally */
+            align-items: center;
+            padding: 15px 20px;
+        }
+        /* Make sure links are evenly spaced */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px; /* Adds spacing between links */
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+        .nav-links a:hover {
+            color: #f00400;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="resources.html">Resouces</a>
-        <a href="games.html">Mini Games</a>
+        <ul class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="resources.html">Resouces</a>
+            <a href="games.html">Mini Games</a>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu();">☰</div>
+    </nav>
     <h1>Felix Visgilio Fanpage</h1>
     <p>This page is not officially associated with Felix Visgilio</p>
     <img src="felix.jpg" width="300" height="400" alt="Felix Visgilio">
