@@ -88,7 +88,7 @@ function saveScore(time) {
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name: playerName, time: time });
     leaderboard.sort((a, b) => a.time - b.time);
-    leaderboard = leaderboard.slice(0, 5); // Keep top 5 scores
+    leaderboard = leaderboard.slice(0, 3); // Keep top 3
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
     
     displayLeaderboard();
