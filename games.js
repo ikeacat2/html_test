@@ -3,40 +3,49 @@ const images = [
     "felix1.jpg", "felix2.jpg", "felix3.jpg", "felix4.jpg"
 ];
 
-let shuffledImages = images.sort(() => Math.random() - 0.5); // Shuffle images
+let shuffledImages = images.sort(() => Math.random() - 0.5);
 let selectedCards = [];
 let matchedCards = [];
 let startTime;
 let timerInterval;
 
 const gameBoard = document.getElementById("gameBoard");
-const timerDisplay = document.getElementById("timer");
+const leaderboardElement = document.getElementById("leaderboard");
+const nameInputContainer = document.getElementById("nameInput");
+const playerNameInput = document.getElementById("playerName");
 
-// 🛠 Create cards dynamically
-shuffledImages.forEach((imgSrc, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.dataset.image = imgSrc;
+// 🛠 Create game board
+function createCards() {
+    gameBoard.innerHTML = ""; // Clear previous cards
+    shuffledImages = images.sort(() => Math.random() - 0.5);
 
-    const img = document.createElement("img");
-    img.src = imgSrc;
+    shuffledImages.forEach((imgSrc) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.image = imgSrc;
 
-    card.appendChild(img);
-    card.addEventListener("click", () => flipCard(card));
+        const img = document.createElement("img");
+        img.src = imgSrc;
 
-    gameBoard.appendChild(card);
-});
+        card.appendChild(img);
+        card.addEventListener("click", () => flipCard(card));
 
-// 🕒 Start timer when the first card is flipped
+        gameBoard.appendChild(card);
+    });
+}
+
+createCards(); // Initialize game board
+
+// 🕒 Start Timer on first flip
 function startTimer() {
     startTime = Date.now();
     timerInterval = setInterval(() => {
         const elapsed = Math.floor((Date.now() - startTime) / 1000);
-        timerDisplay.textContent = elapsed;
+        document.title = `Time: ${elapsed}s - Felix Visgilio Fanpage`; // Display time in title
     }, 1000);
 }
 
-// ⏹ Stop timer when game ends
+// ⏹ Stop timer
 function stopTimer() {
     clearInterval(timerInterval);
 }
@@ -73,34 +82,32 @@ function checkMatch() {
     if (matchedCards.length === images.length) {
         stopTimer();
         setTimeout(() => {
-            document.getElementById("nameInput").style.display = "block"; // Show name input
+            nameInputContainer.style.display = "block"; // Show name input
         }, 500);
     }
 }
 
 // 💾 Save score to leaderboard
 function saveScore() {
-    const name = document.getElementById("playerName").value || "Anonymous";
-    const time = parseInt(timerDisplay.textContent);
+    const name = playerNameInput.value.trim() || "Anonymous";
+    const time = Math.floor((Date.now() - startTime) / 1000);
 
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name, time });
 
-    // Sort by fastest time and keep top 5
     leaderboard.sort((a, b) => a.time - b.time);
     leaderboard = leaderboard.slice(0, 5);
 
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-    
+
     updateLeaderboard();
-    document.getElementById("nameInput").style.display = "none"; // Hide input
+    nameInputContainer.style.display = "none"; // Hide input
 }
 
 // 📜 Update leaderboard display
 function updateLeaderboard() {
+    leaderboardElement.innerHTML = "";
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    const leaderboardElement = document.getElementById("leaderboard");
-    leaderboardElement.innerHTML = ""; // Clear old list
 
     leaderboard.forEach(entry => {
         const li = document.createElement("li");
@@ -109,30 +116,14 @@ function updateLeaderboard() {
     });
 }
 
-// 🎮 Start game function (reset everything)
+// 🎮 Restart game
 function startGame() {
     matchedCards = [];
     selectedCards = [];
-    timerDisplay.textContent = "0";
-    document.getElementById("nameInput").style.display = "none";
-
-    gameBoard.innerHTML = ""; // Clear board
-    shuffledImages = images.sort(() => Math.random() - 0.5); // Shuffle images
-
-    shuffledImages.forEach((imgSrc) => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.dataset.image = imgSrc;
-
-        const img = document.createElement("img");
-        img.src = imgSrc;
-
-        card.appendChild(img);
-        card.addEventListener("click", () => flipCard(card));
-
-        gameBoard.appendChild(card);
-    });
+    nameInputContainer.style.display = "none";
+    playerNameInput.value = "";
+    createCards();
 }
 
-// Call leaderboard update when page loads
+// 🏆 Load leaderboard on page load
 updateLeaderboard();
