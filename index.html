@@ -12,6 +12,7 @@
             background-color: #79d7fd;
             text-align: center;
         }
+
         .navbar {
             background-color: #0509ff;
             color: white;
@@ -20,6 +21,7 @@
             align-items: center;
             padding: 15px 20px;
         }
+
         /* Make sure links are evenly spaced */
         .nav-links {
             list-style: none;
@@ -28,14 +30,21 @@
             padding: 0;
             margin: 0;
         }
+
+        .nav-links li {
+            display: inline;
+        }
+
         .nav-links a {
             text-decoration: none;
             color: white;
             font-size: 1.2em;
         }
+
         .nav-links a:hover {
             color: #f00400;
         }
+
         .menu-toggle {
             display: none;
             font-size: 1.8em;
@@ -46,18 +55,22 @@
 <body>
     <nav class="navbar">
         <ul class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="resources.html">Resouces</a>
-            <a href="games.html">Mini Games</a>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="games.html">Mini Games</a></li>
         </ul>
         <div class="menu-toggle" onclick="toggleMenu();">☰</div>
     </nav>
+
     <h1>Felix Visgilio Fanpage</h1>
     <p>This page is not officially associated with Felix Visgilio</p>
     <img src="felix.jpg" width="300" height="400" alt="Felix Visgilio">
     <p></p>
     <a href="subpage.html">Frequently Asked Questions</a>
+    
     <h2>Contact</h2>
-    <p>If you have Felix Visgilio&trade; content, you can email me: <a href="mailto:ivyholiday27@gmail.com"> here </a> </p>
+    <p>If you have Felix Visgilio&trade; content, you can email me: 
+        <a href="mailto:ivyholiday27@gmail.com"> here </a> 
+    </p>
 </body>
 </html>
