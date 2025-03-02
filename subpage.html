@@ -12,9 +12,55 @@
             background-color: #79d7fd;
             text-align: center;
         }
+        .navbar {
+            background-color: #00bbfa;
+            color: white;
+            display: flex;
+            justify-content: center; /* Centers the items horizontally */
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        /* Make sure links are evenly spaced */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px; /* Adds spacing between links */
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .nav-links a:hover {
+            color: #f00400;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <!-- <li><a href="resources.html">Resources</a></li> -->
+            <li><a href="games.html">Mini Games</a></li>
+            <li><a href="subpage.html">FAQs</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu();">☰</div>
+    </nav>
     <h1>Frequently Asked Questions</h1>
     <h2>What is Felix Visgilio's birthday?</h3>
     <p>June 30th, 2006</p>
@@ -24,6 +70,5 @@
     <a href="IvyHoliday.html">Learn more about Felix Visgilio's girlfriend</a>
     <p></p>
     <h3>Now stop asking questions, you are being nosy.</p>
-    <a href="index.html">return to Main Page</a>
 </body>
 </html>
