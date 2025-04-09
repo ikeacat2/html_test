@@ -12,17 +12,39 @@
             background-color: #79d7fd;
             text-align: center;
         }
-        button {
-            background-color: #00bbfa;
-            color: white;
-            border: none;
+        .button-row {
+            display: flex;
+            gap: 15px; /* spacing between buttons */
+            justify-content: center; /* center them horizontally */
+            margin-top: 20px;
+        }
+
+        .spotify-button, .apple-button {
             padding: 10px 20px;
             font-size: 16px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #f00400;
+
+        .spotify-button {
+            background-color: #1DB954;
+            color: white;
         }
+
+        .spotify-button:hover {
+            background-color: #1ed760;
+        }
+
+        .apple-button {
+            background-color: #000;
+            color: white;
+        }
+
+        .apple-button:hover {
+            background-color: #333;
+        }
+
         .navbar {
             background-color: #00bbfa;
             color: white;
@@ -77,15 +99,16 @@
     <p>This page is not officially associated with Felix Visgilio</p>
     <img src="felix.jpg" width="300" height="400" alt="Felix Visgilio">
     <p></p>
-    <iframe style="border-radius:12px" 
-        src="https://open.spotify.com/track/7ppPZa3TRUSGKaks9wH7VT?si=d36971b717df407b"
-        width="300" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy">
-  </iframe>
-    <!-- <br>
-    <button onclick="window.open('https://open.spotify.com/track/7ppPZa3TRUSGKaks9wH7VT?si=d36971b717df407b', '_blank')">
-        🎧 Play on Spotify
-    </button> -->
+    <br>
+    <div class="button-row">
+        <button class="spotify-button" onclick="window.open('https://open.spotify.com/track/7ppPZa3TRUSGKaks9wH7VT?si=d36971b717df407b', '_blank')">
+          🎧 Play on Spotify
+        </button>
+      
+        <button class="apple-button" onclick="window.open('https://music.apple.com/us/album/dont-look-back-in-anger-remastered/1525933483?i=1525933492', '_blank')">
+          🍎 Play on Apple Music (Felix Style)
+        </button>
+      </div>      
     <h2>Contact</h2>
     <p>If you have Felix Visgilio&trade; content, you can email me: 
         <a href="mailto:ivyholiday27@gmail.com"> here </a> 
