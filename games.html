@@ -78,6 +78,7 @@
         .card.flipped img {
             display: block;
         }
+        
     </style>
 </head>
 <body>
@@ -93,7 +94,7 @@
     <h1>Mini Games</h1>
     <p>Click on the cards to find matching Felixs!</p>
     <div class="game-board" id="gameBoard"></div>
-    
+    <!--
     <div id="nameInput" style="display: none;">
         <p>Enter your name:</p>
         <input type="text" id="playerName" placeholder="Your Name">
@@ -102,6 +103,11 @@
 
     <h2>Leaderboard</h2>
     <ul id="leaderboard"></ul>
-    <script src="games.js"></script>
+    <script src="games.js"></script> -->
+
+    <h2>Flappy Felix</h2>
+    <p>Click or press space to flap! Don't hit the pipes!</p>
+    <canvas id="flappyCanvas" width="400" height="600" style="border: 2px solid #333; background: #4ec0ca;"></canvas>
+
 </body>
 </html>
