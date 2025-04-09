@@ -109,8 +109,6 @@ displayLeaderboard();
 // === FLAPPY FELIX ===
 (function () {
     const canvas = document.getElementById('flappyCanvas');
-    if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     const gravity = 0.5;
     const flapStrength = -8;
@@ -127,7 +125,12 @@ displayLeaderboard();
     let gameOver = false;
 
     const birdImg = new Image();
-    birdImg.src = 'flappyFelix.jpg';
+    birdImg.src = 'flappyFelix.jpg';  // Ensure this image exists in the correct path
+
+    birdImg.onload = function () {
+        resetGame();
+        loop();
+    };
 
     function resetGame() {
         birdY = canvas.height / 2;
@@ -191,13 +194,11 @@ displayLeaderboard();
         ctx.fillText('Score: ' + score, 10, 30);
 
         if (gameOver) {
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#fff';
-            ctx.font = '48px Arial';
-            ctx.fillText('Game Over', 80, canvas.height / 2);
-            ctx.font = '24px Arial';
-            ctx.fillText('Click to Restart', 110, canvas.height / 2 + 40);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, canvas.height / 2 - 50, canvas.width, 100);
+            ctx.fillStyle = 'white';
+            ctx.font = '32px Arial';
+            ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);
         }
     }
 
@@ -215,10 +216,5 @@ displayLeaderboard();
         if (gameOver) resetGame();
         else birdVelocity = flapStrength;
     });
-
-    // ✅ Start game only after the image is ready
-    birdImg.onload = function () {
-        resetGame();
-        loop();
-    };
 })();
+
