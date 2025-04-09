@@ -71,7 +71,9 @@ function checkMatch() {
 function updateTimer() {
     document.getElementById("timer").textContent = Math.floor((Date.now() - startTime) / 1000);
 }
+
 /*
+// Optional: Enable this part if you're using the leaderboard
 function saveScorePrompt(time) {
     document.getElementById("nameInput").style.display = "block";
     document.getElementById("playerName").onkeypress = function(event) {
@@ -84,13 +86,13 @@ function saveScorePrompt(time) {
 function saveScore(time) {
     const playerName = document.getElementById("playerName").value.trim();
     if (!playerName) return;
-    
+
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name: playerName, time: time });
     leaderboard.sort((a, b) => a.time - b.time);
-    leaderboard = leaderboard.slice(0, 3); // Keep top 3
+    leaderboard = leaderboard.slice(0, 3);
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-    
+
     displayLeaderboard();
     document.getElementById("nameInput").style.display = "none";
 }
@@ -101,7 +103,8 @@ function displayLeaderboard() {
     leaderboardElement.innerHTML = leaderboard.map(entry => `<li>${entry.name}: ${entry.time} seconds</li>`).join("");
 }
 
-displayLeaderboard(); */
+displayLeaderboard();
+*/
 
 // === FLAPPY FELIX ===
 (function () {
@@ -142,6 +145,7 @@ displayLeaderboard(); */
 
     function update() {
         if (gameOver) return;
+
         birdVelocity += gravity;
         birdY += birdVelocity;
         birdAngle = Math.min((birdVelocity / 10) * 45, 90);
@@ -168,8 +172,8 @@ displayLeaderboard(); */
     }
 
     function draw() {
-        ctx.drawImage(birdImg, -birdSize / 2, -birdSize / 2, birdSize, birdSize);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         ctx.fillStyle = '#2ecc71';
         for (let pipe of pipes) {
             ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
@@ -212,6 +216,9 @@ displayLeaderboard(); */
         else birdVelocity = flapStrength;
     });
 
-    resetGame();
-    loop();
+    // ✅ Start game only after the image is ready
+    birdImg.onload = function () {
+        resetGame();
+        loop();
+    };
 })();
